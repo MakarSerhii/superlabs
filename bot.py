@@ -1,14 +1,23 @@
 from telegram import *
 from telegram.ext import *
-from parsing import selenium_parser
+from parsing import selenium_parser, deleting_img
 
 
 def code(update: Update, context: CallbackContext):
+    """
+    1.Taking the trading pair from user and give it to parser.
+    2.Sending the photo to user in telegram.
+    3.Deleting the image.
+    """
     trading_pair = update.message.text
-    img = selenium_parser(trading_pair)
-
+    selenium_parser(trading_pair)
+    update.message.reply_photo(open("telegram_photo.jpg", "rb"))
+    deleting_img()
 
 def start(update, context):
+    """
+    Entry point
+    """
     update.message.reply_text('Hello!')
     update.message.reply_text('Please enter your trading pair:')
 
