@@ -1,6 +1,6 @@
 from telegram import *
 from telegram.ext import *
-from .parsing import selenium_parser
+from parsing import selenium_parser
 
 
 def code(update: Update, context: CallbackContext):
